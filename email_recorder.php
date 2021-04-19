@@ -64,6 +64,7 @@ final class Main {
 	public function init_classes() {
 		if ( is_admin() ) {
 			new Em\Re\Admin();
+			new 
 		}
 	}
 
