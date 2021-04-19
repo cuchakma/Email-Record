@@ -35,7 +35,7 @@ class Installer {
 	/**
 	 * Database Table Installation During Activation
 	 *
-	 * @return string
+	 * @return void
 	 */
 	public function add_database_table() {
 		global $wpdb;
