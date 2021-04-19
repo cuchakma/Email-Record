@@ -12,7 +12,7 @@ class Installer {
 	 *
 	 * @return void
 	 */
-	public static function initializer() {
+	public function initializer() {
 		$this->add_version();
 		$this->add_database_table();
 	}

@@ -41,6 +41,7 @@ final class Main {
 	public function __construct() {
 		$this->define_constants();
 		$this->init_classes();
+		register_activation_hook( __FILE__, array( $this, 'activate' ) );
 	}
 
 	/**
@@ -64,7 +65,6 @@ final class Main {
 	public function init_classes() {
 		if ( is_admin() ) {
 			new Em\Re\Admin();
-			new 
 		}
 	}
 
@@ -83,8 +83,14 @@ final class Main {
 		return $instance;
 	}
 
+	/**
+	 * Activate Function Trigerred During Activation
+	 *
+	 * @return void
+	 */
 	public function activate() {
-
+		$installer_instance = new \Em\Re\Installer();
+		$installer_instance->initializer();
 	}
 
 
