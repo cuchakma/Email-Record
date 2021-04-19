@@ -1,0 +1,20 @@
+{
+    "name": "cupid/data-table-2",
+    "description": "This plugin shows data using \\WP_LIST_TABLE",
+    "type": "wordpress-plugin",
+    "license": "GPLv2",
+    "authors": [
+        {
+            "name": "Cupid Chakma",
+            "email": "greendaycu20@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Em\\Re\\":"includes/"
+        },
+        "files": []
+    }
+}
