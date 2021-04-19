@@ -22,6 +22,10 @@ class ComposerStaticInit88310e4f6455e03deb74a45476dd1759
 
     public static $classMap = array (
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
+        'Em\\Re\\Admin' => __DIR__ . '/../..' . '/includes/Admin.php',
+        'Em\\Re\\Admin\\Menu' => __DIR__ . '/../..' . '/includes/Admin/Menu.php',
+        'Em\\Re\\Admin\\Records' => __DIR__ . '/../..' . '/includes/Admin/Records.php',
+        'Em\\Re\\Installer' => __DIR__ . '/../..' . '/includes/Installer.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

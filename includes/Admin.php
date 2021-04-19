@@ -11,8 +11,8 @@ class Admin {
 	 * Admin Class Initialize
 	 */
 	public function __construct() {
-		$email_record_page = new \Em\Re\Admin\records();
-		new \Em\Re\Admin\menu( $email_record_page );
+		$email_record_page = new \Em\Re\Admin\Records();
+		new \Em\Re\Admin\Menu( $email_record_page );
 		$this->run_hook_actions( $email_record_page );
 	}
 
