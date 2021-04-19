@@ -13,7 +13,7 @@ class Records {
 	 * @return void
 	 */
 	public function email_records() {
-		echo 'HI';
+		// echo 'HI';
 	}
 
 }

@@ -7,22 +7,43 @@ namespace Em\Re\Admin;
  */
 class Menu {
 
-	public $page;
+	/**
+	 * Object variable 1
+	 *
+	 * @var page1
+	 */
+	public $page1;
 
-	public function __construct( $page ) {
-		$this->page = $page;
+	/**
+	 * Object variable 2
+	 *
+	 * @var page2
+	 */
+	public $page2;
+
+	/**
+	 * Menu Class Initializer
+	 *
+	 * @param object $page1 page object variable.
+	 * @param object $page2 page object variable.
+	 */
+	public function __construct( $page1, $page2 ) {
+		$this->page1 = $page1;
+		$this->page2 = $page2;
 		add_action( 'admin_menu', array( $this, 'admin_menu' ) );
 	}
 
+	/**
+	 * Load Plugin Menus
+	 *
+	 * @return void
+	 */
 	public function admin_menu() {
 		$capability  = 'manage_options';
 		$parent_slug = 'email-records';
-		add_menu_page( 'email-records', 'Email Recorder', $capability, $parent_slug, array( $this->page, 'email_records' ), 'dashicons-portfolio' );
-		add_submenu_page( $parent_slug, 'view-records', 'View Records', $capability, $parent_slug, array( $this->page, 'email_records' ) );
-		add_submenu_page( $parent_slug, 'settings', 'Settings', $capability, 'settings', array( $this, 'settings_page' ) );
+		add_menu_page( 'email-records', 'Email Recorder', $capability, $parent_slug, array( $this->page1, 'email_records' ), 'dashicons-portfolio' );
+		add_submenu_page( $parent_slug, 'view-records', 'View Records', $capability, $parent_slug, array( $this->page1, 'email_records' ) );
+		add_submenu_page( $parent_slug, 'settings', 'Settings', $capability, 'settings', array( $this->page2, 'email_settings' ) );
 	}
 
-	public function settings_page() {
-		echo 'Hello From Settings Page';
-	}
 }
