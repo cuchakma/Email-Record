@@ -62,7 +62,9 @@ final class Main {
 	 * @return void
 	 */
 	public function init_classes() {
-		new Em\Re\Admin();
+		if ( is_admin() ) {
+			new Em\Re\Admin();
+		}
 	}
 
 	/**
