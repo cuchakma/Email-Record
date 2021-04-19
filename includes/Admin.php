@@ -20,7 +20,8 @@ class Admin {
 	/**
 	 * Executes Actions In A Class Function(action hooks are hooked into functions belonging to a page object or class)
 	 *
-	 * @param object $page_object_1, $page_object_2 page object load.
+	 * @param object $page_object_1 page object load.
+	 * @param object $page_object_2 page object load.
 	 * @return void
 	 */
 	public function run_hook_actions( $page_object_1, $page_object_2 ) {
