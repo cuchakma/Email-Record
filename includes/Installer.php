@@ -39,7 +39,7 @@ class Installer {
 	 */
 	public function add_database_table() {
 		global $wpdb;
-		$table_name      = 'email_recorder';
+		$table_name      = $wpdb->prefix . 'email_recorder';
 		$charset_collate = $wpdb->get_charset_collate();
 
 		$sql = 'CREATE TABLE ' . $table_name . ' (
@@ -57,6 +57,10 @@ class Installer {
 				PRIMARY KEY  (id)
 			) ' . $charset_collate . ';';
 
-		return $sql;
+		if ( ! function_exists( 'dbDelta' ) ) {
+			require_once ABSPATH . 'wp-admin/includes/upgrade.php';
+		}
+
+		dbDelta( $sql );
 	}
 }
