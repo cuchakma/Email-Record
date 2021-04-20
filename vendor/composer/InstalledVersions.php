@@ -25,24 +25,24 @@ class InstalledVersions
 private static $installed = array (
   'root' => 
   array (
-    'pretty_version' => '1.0.0+no-version-set',
-    'version' => '1.0.0.0',
+    'pretty_version' => 'dev-develop',
+    'version' => 'dev-develop',
     'aliases' => 
     array (
     ),
-    'reference' => NULL,
-    'name' => 'cupid/data-table-2',
+    'reference' => '1ef95822b7b679faee7cbcedd275e888592a317c',
+    'name' => 'cupid/email-recorder',
   ),
   'versions' => 
   array (
-    'cupid/data-table-2' => 
+    'cupid/email-recorder' => 
     array (
-      'pretty_version' => '1.0.0+no-version-set',
-      'version' => '1.0.0.0',
+      'pretty_version' => 'dev-develop',
+      'version' => 'dev-develop',
       'aliases' => 
       array (
       ),
-      'reference' => NULL,
+      'reference' => '1ef95822b7b679faee7cbcedd275e888592a317c',
     ),
   ),
 );

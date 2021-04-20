@@ -1,6 +1,6 @@
 {
-    "name": "cupid/data-table-2",
-    "description": "This plugin shows data using \\WP_LIST_TABLE",
+    "name": "cupid/email-recorder",
+    "description": "This plugin stores email datas fired from wordpress site",
     "type": "wordpress-plugin",
     "license": "GPLv2",
     "authors": [
@@ -15,6 +15,6 @@
         "psr-4": {
             "Em\\Re\\":"includes/"
         },
-        "files": []
+        "files": ["includes/functions.php"]
     }
 }
