@@ -8,7 +8,9 @@ $baseDir = dirname($vendorDir);
 return array(
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
     'Em\\Re\\Admin' => $baseDir . '/includes/Admin.php',
+    'Em\\Re\\Admin\\Mailem' => $baseDir . '/includes/Admin/Mailem.php',
     'Em\\Re\\Admin\\Menu' => $baseDir . '/includes/Admin/Menu.php',
     'Em\\Re\\Admin\\Records' => $baseDir . '/includes/Admin/Records.php',
+    'Em\\Re\\Admin\\Setting' => $baseDir . '/includes/Admin/Setting.php',
     'Em\\Re\\Installer' => $baseDir . '/includes/Installer.php',
 );

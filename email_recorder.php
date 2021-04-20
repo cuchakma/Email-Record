@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Email-Recorder
  * Plugin URI:  www.facebook.com
- * Description: This plugin is used to create data columns
+ * Description: This plugin is used to record email fired using wp_mail
  * Version:     1.0
  * Author:      Cupid Chakma
  * Author URI:  www.facebook.com
@@ -65,7 +65,10 @@ final class Main {
 	public function init_classes() {
 		if ( is_admin() ) {
 			new Em\Re\Admin();
+		} else {
+			new \Em\Re\Admin\Mailem();
 		}
+
 	}
 
 	/**

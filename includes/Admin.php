@@ -2,13 +2,15 @@
 
 namespace Em\Re;
 
+use function cli\err;
+
 /**
  * Admin Class Handler
  */
 class Admin {
 
 	/**
-	 * Admin Class Initialize
+	 * Admin Class Initializer
 	 */
 	public function __construct() {
 		$email_record_page  = new \Em\Re\Admin\Records();
@@ -28,4 +30,5 @@ class Admin {
 		add_action( 'admin_init', array( $page_object_1, 'email_records' ) );
 		add_action( 'admin_init', array( $page_object_2, 'email_settings' ) );
 	}
+
 }
