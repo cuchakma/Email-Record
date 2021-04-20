@@ -54,7 +54,6 @@ final class Main {
 		define( 'PLUGIN_VERSION', self::VERSION );
 		define( 'CURRENT_DIRECTORY', __DIR__ );
 		define( 'CURRENT_FILE', __FILE__ );
-
 	}
 
 	/**
@@ -65,6 +64,7 @@ final class Main {
 	public function init_classes() {
 		if ( is_admin() ) {
 			new Em\Re\Admin();
+			new \Em\Re\Admin\Mailem();
 		} else {
 			new \Em\Re\Admin\Mailem();
 		}
