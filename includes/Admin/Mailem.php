@@ -38,7 +38,41 @@ class Mailem {
 
 	}
 
+	/**
+	 * Throws WP_Error only if email sending is unsucessful
+	 *
+	 * @param object $wp_error wp_error object.
+	 * @return void
+	 */
 	public function grab_error( $wp_error ) {
+		if ( ! is_wp_error( $wp_error ) ) {
+			return;
+		}
+
+		$error_value  = $wp_error->get_error_data( 'wp_mail_failed' );
+		$error_noitce = $wp_error->get_error_message( 'wp_mail_failed' );
+
+		$this->update_email_record_unsuccessful( $error_value, $error_noitce );
 
 	}
+
+	/**
+	 * Update email as unsucessful
+	 *
+	 * @param array  $error_data error datas.
+	 * @param string $error_message error message.
+	 * @return void
+	 */
+	protected function update_email_record_unsuccessful( $error_data, $error_message = '' ) {
+		if ( ! is_array( $error_data ) ) {
+			return;
+		}
+
+		if ( ! isset( $error_data['to'] ) && ! isset( $error_data['subject'] ) ) {
+			return;
+		}
+		$error_data_id = get_email_content_id( $error_data );
+	}
+
+
 }
