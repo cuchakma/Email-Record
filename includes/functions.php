@@ -48,8 +48,8 @@ function insert_email_content( $data = array() ) {
 /**
  * Get current email data id only for wp_error
  *
- * @param array $data error data
- * @return void
+ * @param array $data error data.
+ * @return int
  */
 function get_email_content_id( $data ) {
 
