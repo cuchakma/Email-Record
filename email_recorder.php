@@ -52,7 +52,6 @@ final class Main {
 	public function define_constants() {
 		define( 'ASSETS_PATH', __DIR__ . '/assets' );
 		define( 'PLUGIN_VERSION', self::VERSION );
-		define( 'CURRENT_DIRECTORY', __DIR__ );
 	}
 
 	/**
