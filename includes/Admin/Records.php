@@ -12,8 +12,11 @@ class Records {
 	 *
 	 * @return void
 	 */
-	public function email_records() {
-		// echo 'HI';
+	public function email_record_lists() {
+		$template = __DIR__ . '/views/email-list.php';
+		if ( file_exists( $template ) ) {
+			include $template;
+		}
 	}
 
 }

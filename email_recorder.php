@@ -53,7 +53,6 @@ final class Main {
 		define( 'ASSETS_PATH', __DIR__ . '/assets' );
 		define( 'PLUGIN_VERSION', self::VERSION );
 		define( 'CURRENT_DIRECTORY', __DIR__ );
-		define( 'CURRENT_FILE', __FILE__ );
 	}
 
 	/**
@@ -87,7 +86,7 @@ final class Main {
 	}
 
 	/**
-	 * Activate Function Trigerred During Activation
+	 * Activate Function Trigerred During Plugin Activation
 	 *
 	 * @return void
 	 */

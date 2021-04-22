@@ -47,7 +47,7 @@ class Installer {
 		$table_name      = $wpdb->prefix . 'email_recorder';
 		$charset_collate = $wpdb->get_charset_collate();
 
-		$sql = 'CREATE TABLE IF NOT EXISTS' . $table_name . ' (
+		$sql = 'CREATE TABLE IF NOT EXISTS ' . $table_name . ' (
 				id mediumint(9) NOT NULL AUTO_INCREMENT,
 				to_email VARCHAR(500) NOT NULL,
 				subject VARCHAR(500) NOT NULL,
