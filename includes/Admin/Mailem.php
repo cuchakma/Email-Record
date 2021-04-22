@@ -77,7 +77,7 @@ class Mailem {
 		if ( empty( $error_data_id ) ) {
 			return;
 		} else {
-			update_result_column( $error_data_id, $error_message );
+			update_successful_column( $error_data_id, $error_message );
 		}
 
 	}

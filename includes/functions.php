@@ -2,7 +2,7 @@
 
 
 /**
- * Insert/Update Email Records
+ * Insert Email Records
  *
  * @param array $data contains email message content.
  * @return void
@@ -83,23 +83,23 @@ function get_email_content_id( $data ) {
 }
 
 /**
- * Update result column as failed
+ * Update successful column as failed
  *
  * @param int    $error_email_id error email id.
  * @param string $error_message error message.
  * @return void
  */
-function update_result_column( $error_email_id, $error_message ) {
+function update_successful_column( $error_email_id, $error_message = '' ) {
 	global $wpdb;
 	$table_name = $wpdb->prefix . 'email_recorder';
 
 	$data = array(
-		'result'        => '0',
+		'successful'    => '0',
 		'error_message' => $error_message,
 	);
 
 	$where = array(
-		'ID' => $error_email_id,
+		'id' => $error_email_id,
 	);
 
 	$updated = $wpdb->update(
@@ -114,8 +114,6 @@ function update_result_column( $error_email_id, $error_message ) {
 			'%d',
 		)
 	);
-
-	error_log( $updated );
 }
 
 

@@ -38,13 +38,14 @@ class Installer {
 	 * @return void
 	 */
 	public function add_database_table() {
-		global $wpdb;
-		$table_name      = $wpdb->prefix . 'email_recorder';
-		$charset_collate = $wpdb->get_charset_collate();
 
 		if ( ! function_exists( 'dbDelta' ) ) {
 			require_once ABSPATH . 'wp-admin/includes/upgrade.php';
 		}
+
+		global $wpdb;
+		$table_name      = $wpdb->prefix . 'email_recorder';
+		$charset_collate = $wpdb->get_charset_collate();
 
 		$sql = 'CREATE TABLE IF NOT EXISTS' . $table_name . ' (
 				id mediumint(9) NOT NULL AUTO_INCREMENT,
@@ -56,7 +57,7 @@ class Installer {
 				sent_date timestamp NOT NULL,
 				attachment_name VARCHAR(1000),
 				ip_address VARCHAR(15),
-				result TINYINT(1),
+				successful TINYINT(1),
 				error_message VARCHAR(1000),
 				PRIMARY KEY  (id)
 			) ' . $charset_collate . ';';
