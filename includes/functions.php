@@ -46,7 +46,7 @@ function insert_email_content( $data = array() ) {
 }
 
 /**
- * Get current email data id only for wp_error
+ * Get current email data id only for wp_error object
  *
  * @param array $data error data.
  * @return int
@@ -80,6 +80,42 @@ function get_email_content_id( $data ) {
 	}
 	$sql = "SELECT id FROM {$table_name} WHERE to_email = '{$columns['to_email']}' AND subject = '{$columns['subject']}' AND attachments = {$columns['attachments']} ORDER BY id DESC LIMIT 1";
 	return absint( $wpdb->get_var( $sql ) );
+}
+
+/**
+ * Update result column as failed
+ *
+ * @param int    $error_email_id error email id.
+ * @param string $error_message error message.
+ * @return void
+ */
+function update_result_column( $error_email_id, $error_message ) {
+	global $wpdb;
+	$table_name = $wpdb->prefix . 'email_recorder';
+
+	$data = array(
+		'result'        => '0',
+		'error_message' => $error_message,
+	);
+
+	$where = array(
+		'ID' => $error_email_id,
+	);
+
+	$updated = $wpdb->update(
+		$table_name,
+		$data,
+		$where,
+		array(
+			'%d',
+			'%s',
+		),
+		array(
+			'%d',
+		)
+	);
+
+	error_log( $updated );
 }
 
 

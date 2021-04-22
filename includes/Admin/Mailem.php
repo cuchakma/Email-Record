@@ -57,7 +57,7 @@ class Mailem {
 	}
 
 	/**
-	 * Update email as unsucessful
+	 * Update email as unsuccessful
 	 *
 	 * @param array  $error_data error datas.
 	 * @param string $error_message error message.
@@ -71,8 +71,15 @@ class Mailem {
 		if ( ! isset( $error_data['to'] ) && ! isset( $error_data['subject'] ) ) {
 			return;
 		}
-		$error_data_id = get_email_content_id( $error_data );
-	}
 
+		$error_data_id = get_email_content_id( $error_data );
+
+		if ( empty( $error_data_id ) ) {
+			return;
+		} else {
+			update_result_column( $error_data_id, $error_message );
+		}
+
+	}
 
 }
