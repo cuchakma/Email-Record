@@ -2,6 +2,8 @@
 
 namespace Em\Re\Admin;
 
+use DateTime;
+
 if ( ! class_exists( 'WP_List_Table' ) ) {
 	require_once ABSPATH . 'wp-admin/includes/class-wp-list-table.php';
 }
@@ -23,7 +25,7 @@ class Record_List extends \WP_List_Table {
 	public function get_columns() {
 		$columns = array(
 			'cb'         => '<input type="checkbox"/>',
-			'sent_date'  => '<strong>Sent Date</strong>',
+			'sent_date'  => '<strong>Sent Date | Time</strong>',
 			'successful' => '<strong>Email Status</strong>',
 			'to_email'   => '<strong>Email Receiver</strong>',
 			'subject'    => '<strong>Email Subject</strong>',
@@ -64,6 +66,10 @@ class Record_List extends \WP_List_Table {
 		);
 	}
 
+	public function column_sent_date( $item ) {
+		$time = new DateTime( $item->sent_date );
+		return $time->format( 'd/m/Y | h:i:s a' );
+	}
 	/**
 	 * Modified column email status
 	 *
@@ -107,15 +113,6 @@ class Record_List extends \WP_List_Table {
 			),
 		);
 
-		// $per_page     = 20;
-		// $current_page = $this->get_pagenum();
-		// $offset       = ( $current_page - 1 ) * $per_page;
-
-		// $args = array(
-		// 'number' => $per_page,
-		// 'offser' => $offset,
-		// 'order'  => 'ASC',
-		// );
 	}
 
 
