@@ -10,6 +10,7 @@ return array(
     'Em\\Re\\Admin' => $baseDir . '/includes/Admin.php',
     'Em\\Re\\Admin\\Mailem' => $baseDir . '/includes/Admin/Mailem.php',
     'Em\\Re\\Admin\\Menu' => $baseDir . '/includes/Admin/Menu.php',
+    'Em\\Re\\Admin\\Record_List' => $baseDir . '/includes/Admin/Record_List.php',
     'Em\\Re\\Admin\\Records' => $baseDir . '/includes/Admin/Records.php',
     'Em\\Re\\Admin\\Setting' => $baseDir . '/includes/Admin/Setting.php',
     'Em\\Re\\Installer' => $baseDir . '/includes/Installer.php',

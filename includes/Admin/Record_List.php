@@ -10,8 +10,8 @@ class Record_List extends \WP_List_Table {
 	public function __construct() {
 		parent::__construct(
 			array(
-				'singular' => 'record',
-				'plural'   => 'records',
+				'singular' => 'email-record',
+				'plural'   => 'email-records',
 				'ajax'     => 'false',
 			)
 		);
@@ -38,19 +38,46 @@ class Record_List extends \WP_List_Table {
 		}
 	}
 
+	/**
+	 * Column checkbox modified
+	 *
+	 * @param object $item stdClass object.
+	 * @return string
+	 */
+	public function column_cb( $item ) {
+		return sprintf(
+			'<input type="checkbox" name="email_record_id" value="%d"/>',
+			$item->id
+		);
+	}
+
+	/**
+	 * Prepare the total columns to be displayed
+	 *
+	 * @return void
+	 */
 	public function prepare_items() {
 		$columns               = $this->get_columns();
-		$this->_column_headers = array( $columns );
-
-		$per_page     = 20;
-		$current_page = $this->get_pagenum();
-		$offset       = ( $current_page - 1 ) * $per_page;
-
-		$args = array(
-			'number' => $per_page,
-			'offser' => $offset,
-			'order'  => 'ASC'
+		$hidden                = array();
+		$sortable              = $this->get_sortable_columns();
+		$per_page              = 20;
+		$this->_column_headers = array( $columns, $hidden, $sortable );
+		$this->items           = get_all_email_records();
+		$this->set_pagination_args(
+			array(
+				'total_items' => count_email_records(),
+				'per_page'    => $per_page,
+			),
 		);
+		// $per_page     = 20;
+		// $current_page = $this->get_pagenum();
+		// $offset       = ( $current_page - 1 ) * $per_page;
+
+		// $args = array(
+		// 'number' => $per_page,
+		// 'offser' => $offset,
+		// 'order'  => 'ASC',
+		// );
 	}
 
 
