@@ -19,11 +19,11 @@ class Record_List extends \WP_List_Table {
 
 	public function get_columns() {
 		$columns = array(
-			'cb'             => '<input type="checkbox"/>',
-			'sent_date'      => 'Sent Date',
-			'email status'   => 'Email Status',
-			'email_receiver' => 'Email Receiver',
-			'email_subject'  => 'Email Subject',
+			'cb'         => '<input type="checkbox"/>',
+			'sent_date'  => 'Sent Date',
+			'successful' => 'Email Status',
+			'to_email'   => 'Email Receiver',
+			'subject'    => 'Email Subject',
 		);
 
 		return $columns;
@@ -33,7 +33,6 @@ class Record_List extends \WP_List_Table {
 		switch ( $column_name ) {
 			case 'value':
 				break;
-
 			default:
 				return isset( $item->$column_name ) ? $item->$column_name : '';
 		}
@@ -50,6 +49,7 @@ class Record_List extends \WP_List_Table {
 		$args = array(
 			'number' => $per_page,
 			'offser' => $offset,
+			'order'  => 'ASC'
 		);
 	}
 

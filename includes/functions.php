@@ -116,5 +116,49 @@ function update_successful_column( $error_email_id, $error_message = '' ) {
 	);
 }
 
+/**
+ * Fetches all email records present inside the table
+ *
+ * @param array $args
+ * @return array
+ */
+function get_all_email_records( $args = array() ) {
+	global $wpdb;
+	$table_name = $wpdb->prefix . 'email_recorder';
+
+	$defaults = array(
+		'number'  => 20,
+		'offset'  => 0,
+		'orderby' => 'id',
+		'order'   => 'ASC',
+	);
+
+	$args = wp_parse_args( $args, $defaults );
+
+	$email_records = $wpdb->get_results(
+		$wpdb->prepare(
+			"SELECT * FROM {$table_name} ORDER BY %s %s LIMIT %d, %d",
+			$args['orderby'],
+			$args['order'],
+			$args['offset'],
+			$args['number']
+		)
+	);
+
+	return $email_records;
+}
+
+/**
+ * Gets the total count of email records from the database.
+ *
+ * @return int
+ */
+function count_email_records() {
+	global $wpdb;
+	$table_name = $wpdb->prefix . 'email_recorder';
+	$sql        = "SELECT COUNT(*) FROM $table_name";
+	return absint( $wpdb->get_var( $sql ) );
+}
+
 
 
