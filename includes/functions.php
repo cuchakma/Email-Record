@@ -134,12 +134,9 @@ function get_all_email_records( $args = array() ) {
 	);
 
 	$args = wp_parse_args( $args, $defaults );
-
 	$email_records = $wpdb->get_results(
 		$wpdb->prepare(
-			"SELECT * FROM {$table_name} ORDER BY %s %s LIMIT %d, %d",
-			$args['orderby'],
-			$args['order'],
+			"SELECT * FROM {$table_name} ORDER BY {$args['orderby']} {$args['order']} LIMIT %d, %d",
 			$args['offset'],
 			$args['number']
 		)
