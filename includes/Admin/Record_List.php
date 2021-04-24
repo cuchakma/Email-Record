@@ -38,7 +38,11 @@ class Record_List extends \WP_List_Table {
 
 	public function get_sortable_columns() {
 		$sortable_columns = array(
-			'sent_date' => array( 'sent_date', true ),
+			'sent_date'  => array( 'sent_date', true ),
+			'successful' => array( 'successful', true ),
+			'to_email'   => array( 'to_email', true ),
+			'subject'    => array( 'subject', true ),
+			'ip_address' => array( 'ip_address', true ),
 		);
 
 		return $sortable_columns;
@@ -77,8 +81,7 @@ class Record_List extends \WP_List_Table {
 	 * @return string
 	 */
 	public function column_successful( $item ) {
-		$image_path = MAIN_DIR . '/assets/img/icon.png';
-		// return "<img src=$image_path alt = 'Simply Easy Learning' width = '200' height = '80' >";
+		$image_path = CURRENT_FOLDER . '/assets/img/icon.png';
 	}
 
 	/**

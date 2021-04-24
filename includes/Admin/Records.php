@@ -16,6 +16,7 @@ class Records {
 		$template = __DIR__ . '/views/email-list.php';
 		if ( file_exists( $template ) ) {
 			wp_enqueue_style( 'email-recorder-st' );
+			wp_enqueue_script( 'email-recorder-sc' );
 			include $template;
 		}
 	}
