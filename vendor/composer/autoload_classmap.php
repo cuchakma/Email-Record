@@ -13,5 +13,6 @@ return array(
     'Em\\Re\\Admin\\Record_List' => $baseDir . '/includes/Admin/Record_List.php',
     'Em\\Re\\Admin\\Records' => $baseDir . '/includes/Admin/Records.php',
     'Em\\Re\\Admin\\Setting' => $baseDir . '/includes/Admin/Setting.php',
+    'Em\\Re\\Assets' => $baseDir . '/includes/Assets.php',
     'Em\\Re\\Installer' => $baseDir . '/includes/Installer.php',
 );

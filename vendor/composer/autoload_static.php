@@ -32,6 +32,7 @@ class ComposerStaticInit88310e4f6455e03deb74a45476dd1759
         'Em\\Re\\Admin\\Record_List' => __DIR__ . '/../..' . '/includes/Admin/Record_List.php',
         'Em\\Re\\Admin\\Records' => __DIR__ . '/../..' . '/includes/Admin/Records.php',
         'Em\\Re\\Admin\\Setting' => __DIR__ . '/../..' . '/includes/Admin/Setting.php',
+        'Em\\Re\\Assets' => __DIR__ . '/../..' . '/includes/Assets.php',
         'Em\\Re\\Installer' => __DIR__ . '/../..' . '/includes/Installer.php',
     );
 

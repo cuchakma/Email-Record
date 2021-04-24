@@ -50,8 +50,11 @@ final class Main {
 	 * @return void
 	 */
 	public function define_constants() {
-		define( 'ASSETS_PATH', __DIR__ . '/assets' );
 		define( 'PLUGIN_VERSION', self::VERSION );
+		define( 'CURRENT_FILE', __FILE__ );
+		define( 'CURRENT_FOLDER', __DIR__ );
+		define( 'PLUGIN_URL', plugins_url( '', CURRENT_FILE ) );
+		define( 'ASSET_PATH', PLUGIN_URL . '/assets' );
 	}
 
 	/**
@@ -60,12 +63,11 @@ final class Main {
 	 * @return void
 	 */
 	public function init_classes() {
+		new \Em\Re\Assets();
 		if ( is_admin() ) {
 			new Em\Re\Admin();
-			new \Em\Re\Admin\Mailem();
-		} else {
-			new \Em\Re\Admin\Mailem();
 		}
+		new \Em\Re\Admin\Mailem();
 
 	}
 

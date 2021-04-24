@@ -77,7 +77,8 @@ class Record_List extends \WP_List_Table {
 	 * @return string
 	 */
 	public function column_successful( $item ) {
-
+		$image_path = MAIN_DIR . '/assets/img/icon.png';
+		// return "<img src=$image_path alt = 'Simply Easy Learning' width = '200' height = '80' >";
 	}
 
 	/**

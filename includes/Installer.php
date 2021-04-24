@@ -55,7 +55,7 @@ class Installer {
 				headers TEXT NOT NULL,
 				attachments TEXT NOT NULL,
 				sent_date timestamp NOT NULL,
-				attachment_name VARCHAR(1000),
+				attachment_name VARCHAR(1000) NOT NULL,
 				ip_address VARCHAR(15),
 				successful TINYINT(1),
 				error_message VARCHAR(1000),
