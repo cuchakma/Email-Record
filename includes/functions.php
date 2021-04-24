@@ -157,5 +157,20 @@ function count_email_records() {
 	return absint( $wpdb->get_var( $sql ) );
 }
 
+/**
+ * Delete Email Record By Id
+ *
+ * @param int $email_record_id record id.
+ * @return void
+ */
+function delete_email_record( $email_record_id ) {
+	global $wpdb;
+	$email_record_id = absint( $email_record_id );
+	$table_name      = $wpdb->prefix . 'email_recorder';
+	$sql             = "DELETE FROM {$table_name} WHERE id = {$email_record_id}";
+
+	$data_delete = $wpdb->delete( $table_name, array( 'id' => $email_record_id ) );
+}
+
 
 

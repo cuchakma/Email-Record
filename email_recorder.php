@@ -64,6 +64,9 @@ final class Main {
 	 */
 	public function init_classes() {
 		new \Em\Re\Assets();
+		if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
+			new \Em\Re\Ajax();
+		}
 		if ( is_admin() ) {
 			new Em\Re\Admin();
 		}
