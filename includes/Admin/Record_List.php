@@ -71,8 +71,11 @@ class Record_List extends \WP_List_Table {
 	}
 
 	public function column_sent_date( $item ) {
-		$time = new DateTime( $item->sent_date );
-		return $time->format( 'd/m/Y | h:i:s a' );
+		$actions['delete'] = sprintf( '<a href=?page=email-records&action=delete&email_id=%d>%s</a>', $item->id, 'Delete' );
+		$time              = new DateTime( $item->sent_date );
+		echo esc_attr( $time->format( 'd/m/Y | h:i:s a' ) );
+		echo $this->row_actions( $actions ) ;
+
 	}
 	/**
 	 * Modified column email status
