@@ -42,8 +42,8 @@ class Menu {
 		$capability  = 'manage_options';
 		$parent_slug = 'email-records';
 		add_menu_page( 'view-records', 'Email Recorder', $capability, $parent_slug, array( $this->page1, 'email_record_lists' ), 'dashicons-portfolio' );
-		add_submenu_page( $parent_slug, 'view-records', 'View Records', $capability, $parent_slug, array( $this->page1, 'email_record_lists' ) );
-		add_submenu_page( $parent_slug, 'settings', 'Settings', $capability, 'email-settings', array( $this->page2, 'email_settings' ) );
+		add_submenu_page( $parent_slug, 'View Records', 'View Records', $capability, $parent_slug, array( $this->page1, 'email_record_lists' ) );
+		add_submenu_page( $parent_slug, 'Email Configurations', 'Email Configurations', $capability, 'email-configuration', array( $this->page2, 'email_config' ) );
 	}
 
 }

@@ -27,6 +27,10 @@ class Assets {
 				'version' => filemtime( CURRENT_FOLDER . '/assets/js/admin.js' ),
 				'deps'    => array( 'jquery' ),
 			),
+			'email-settings-sc' => array(
+				'src'     => ASSET_PATH . '/js/settings.js',
+				'version' => filemtime( CURRENT_FOLDER . '/assets/js/settings.js' ),
+			),
 		);
 		return $script;
 	}
@@ -36,6 +40,10 @@ class Assets {
 			'email-recorder-st' => array(
 				'src'     => ASSET_PATH . '/css/admin.css',
 				'version' => filemtime( CURRENT_FOLDER . '/assets/css/admin.css' ),
+			),
+			'email-settings-st' => array(
+				'src'     => ASSET_PATH . '/css/settings.css',
+				'version' => filemtime( CURRENT_FOLDER . '/assets/css/settings.css' ),
 			),
 		);
 
