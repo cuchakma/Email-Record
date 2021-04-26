@@ -29,7 +29,7 @@ class Callbacks {
 				<?php
 				foreach ( $all_roles as $role ) {
 					?>
-						
+						<input type="checkbox" name="selected_role[]" value="<?php echo esc_html( $role['name'] ); ?>"><?php echo esc_html( $role['name'] ); ?><br>      
 					<?php
 				}
 				?>
