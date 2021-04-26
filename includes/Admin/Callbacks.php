@@ -24,13 +24,18 @@ class Callbacks {
 	public function setting_field_callback() {
 		global $wp_roles;
 		$all_roles = $wp_roles->roles;
+		$options   = get_option( 'selected_role' );
 		?>
 			<fieldset>                         
 				<?php
-				foreach ( $all_roles as $role ) {
+				foreach ( $all_roles as $role => $keys ) {
+					if ( in_array( $role, $options, true ) ) {
+						$checked = 'checked';
+					}
 					?>
-						<input type="checkbox" name="selected_role[]" value="<?php echo esc_html( $role['name'] ); ?>"><?php echo esc_html( $role['name'] ); ?><br>      
+						<input type="checkbox" name="selected_role[]" value="<?php echo esc_html( $role ); ?>" <?php echo $checked; ?>><?php echo esc_html( $keys['name'] ); ?><br>      
 					<?php
+					$checked = '';
 				}
 				?>
 			</fieldset>    
