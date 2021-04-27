@@ -1,5 +1,5 @@
 === Email Recorder - This plugin helps to store email records that are fired using WP_MAIL function ===
-Contributors: Cupid Chakma, Yeasin Rahman
+Contributors: Cupid Chakma
 Tags: Email, Marketting
 Requires at least: 
 Tested up to: 5.7.1
