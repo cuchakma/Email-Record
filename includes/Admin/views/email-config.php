@@ -6,6 +6,7 @@
 	</ul>
 
 	<div class="tab-content">
+		<?php settings_errors(); ?>
 		<div id="tab-1" class="tab-pane active">
 			<form action="options.php" method="POST">
 				<?php

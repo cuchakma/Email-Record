@@ -29,7 +29,9 @@ class Callbacks {
 			<fieldset>                         
 				<?php
 				foreach ( $all_roles as $role => $keys ) {
-					if ( in_array( $role, $options, true ) ) {
+					if ( 'administrator' === $role ) {
+						$checked = 'checked disabled';
+					} elseif ( in_array( $role, $options, true ) ) {
 						$checked = 'checked';
 					}
 					?>
