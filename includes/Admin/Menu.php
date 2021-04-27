@@ -39,7 +39,7 @@ class Menu {
 	 * @return void
 	 */
 	public function email_recorder_menus() {
-		$capability  = 'manage_options';
+		$capability  = 'manage_email_record_options';
 		$parent_slug = 'email-records';
 		add_menu_page( 'view-records', 'Email Recorder', $capability, $parent_slug, array( $this->page1, 'email_record_lists' ), 'dashicons-portfolio' );
 		add_submenu_page( $parent_slug, 'View Records', 'View Records', $capability, $parent_slug, array( $this->page1, 'email_record_lists' ) );

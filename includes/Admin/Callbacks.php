@@ -25,6 +25,7 @@ class Callbacks {
 		global $wp_roles;
 		$all_roles = $wp_roles->roles;
 		$options   = get_option( 'selected_role' );
+		$options   = empty( $options ) ? array() : $options;
 		?>
 			<fieldset>                         
 				<?php

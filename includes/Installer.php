@@ -13,6 +13,7 @@ class Installer {
 	 * @return void
 	 */
 	public function initializer() {
+		$this->add_custom_capability();
 		$this->add_version();
 		$this->add_database_table();
 	}
@@ -63,5 +64,25 @@ class Installer {
 			) ' . $charset_collate . ';';
 
 		dbDelta( $sql );
+	}
+
+	/**
+	 * Added Custom Capability To Users For Email-log Accessibility
+	 *
+	 * @return void
+	 */
+	public function add_custom_capability() {
+		$custom_cap = 'manage_email_record_options';
+		$role_names = get_editable_roles();
+		foreach ( $role_names as $role ) {
+			if ( 'Administrator' === $role['name'] ) {
+				$role_object = get_role( 'administrator' );
+				if ( ! $role_object->has_cap( $custom_cap ) ) {
+					$role_object->add_cap( $custom_cap );
+				}
+			} else {
+
+			}
+		}
 	}
 }
