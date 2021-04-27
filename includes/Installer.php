@@ -80,8 +80,6 @@ class Installer {
 				if ( ! $role_object->has_cap( $custom_cap ) ) {
 					$role_object->add_cap( $custom_cap );
 				}
-			} else {
-
 			}
 		}
 	}

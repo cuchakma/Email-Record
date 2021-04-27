@@ -8,7 +8,7 @@ namespace Em\Re\Admin;
 class Records {
 
 	/**
-	 * Main Page Template
+	 * Main Records Template
 	 *
 	 * @return void
 	 */
