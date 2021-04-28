@@ -65,6 +65,14 @@ class Setting {
 				$wp_roles->remove_cap( $role, $custom_cap );
 			}
 			update_option( 'temp_values_roles', $current_selected_roles );
+			$url = add_query_arg(
+				array(
+					'_wpnonce' => wp_create_nonce( 'capability-nonce' ),
+				),
+				admin_url( 'admin.php?page=email-configuration&saved-roles=true' )
+			);
+			wp_redirect( $url );
+			exit();
 		}
 	}
 

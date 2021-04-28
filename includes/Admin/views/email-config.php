@@ -6,8 +6,18 @@
 	</ul>
 
 	<div class="tab-content">
-		<?php esc_html( settings_errors() ); ?>
-		<div id="tab-1" class="tab-pane active">
+		<div id="tab-1" class="tab-pane active">	
+			<?php
+			if ( isset( $_GET['saved-roles'] ) ) {
+				if ( wp_verify_nonce( $_REQUEST['_wpnonce'], 'capability-nonce' ) ) {
+					?>
+						<div class="notice notice-success">
+							<p><?php esc_attr_e( 'Settings Saved Sucessfully' ); ?></p>
+						</div>
+					<?php
+				}
+			}
+			?>
 			<form action="options.php" method="POST">
 				<?php
 					settings_fields( 'selected-role' );
