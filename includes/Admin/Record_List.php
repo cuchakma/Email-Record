@@ -84,7 +84,7 @@ class Record_List extends \WP_List_Table {
 	}
 
 	public function process_bulk_options() {
-		error_log( $this->current_action() );
+		error_log( $_POST['action'] );
 	}
 
 	/**
