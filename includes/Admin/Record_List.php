@@ -65,7 +65,7 @@ class Record_List extends \WP_List_Table {
 	 */
 	public function column_cb( $item ) {
 		return sprintf(
-			'<input type="checkbox" name="email_record_id" value="%d"/>',
+			'<input type="checkbox" name="email_record_id[]" value="%d"/>',
 			$item->id
 		);
 	}
@@ -77,14 +77,14 @@ class Record_List extends \WP_List_Table {
 		return $this->row_actions( $actions );
 
 	}
-	/**
-	 * Modified column email status
-	 *
-	 * @param object $item stdClass object.
-	 * @return string
-	 */
-	public function column_successful( $item ) {
-		$image_path = CURRENT_FOLDER . '/assets/img/icon.png';
+
+	public function get_bulk_actions() {
+		$actions['delete'] = 'Delete';
+		return $actions;
+	}
+
+	public function process_bulk_options() {
+		error_log( $this->current_action() );
 	}
 
 	/**
@@ -98,11 +98,12 @@ class Record_List extends \WP_List_Table {
 		$sortable              = $this->get_sortable_columns();
 		$this->_column_headers = array( $columns, $hidden, $sortable );
 
+		$this->process_bulk_options();
+
 		$per_page     = 20;
 		$current_page = $this->get_pagenum();
 		$offset       = ( $current_page - 1 ) * $per_page;
-
-		$arguments = array(
+		$arguments    = array(
 			'number' => $per_page,
 			'offset' => $offset,
 		);
@@ -121,6 +122,5 @@ class Record_List extends \WP_List_Table {
 		);
 
 	}
-
 
 }
