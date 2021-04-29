@@ -104,17 +104,23 @@ class Record_List extends \WP_List_Table {
 
 		switch ( $action ) {
 			case 'delete':
-				$ids = isset( $_POST['email_record_id'] ) ? wp_unslash( $_POST['email_record_id'] ) : '';
-				foreach ( $ids as $id ) {
-					delete_email_record( $id );
+				$ids     = isset( $_POST['email_record_id'] ) ? wp_unslash( $_POST['email_record_id'] ) : '';
+				$deleted = 0;
+				if ( ! empty( $ids ) ) {
+					foreach ( $ids as $id ) {
+						delete_email_record( $id );
+					}
+					$deleted = 1;
 				}
-				$url = add_query_arg(
-					array(
-						'_wpnonce' => wp_create_nonce( 'bulk-delete-nonce' ),
-					),
-					admin_url( 'admin.php?page=email-records&bulk-delete=true' )
-				);
-				wp_redirect( $url );
+				if ( $deleted ) {
+					$url = add_query_arg(
+						array(
+							'_wpnonce' => wp_create_nonce( 'bulk-delete-nonce' ),
+						),
+						admin_url( 'admin.php?page=email-records&bulk-delete=true' )
+					);
+					wp_redirect( $url );
+				}
 				break;
 			default:
 				return;
