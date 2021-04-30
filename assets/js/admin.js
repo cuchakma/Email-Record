@@ -1,10 +1,11 @@
 ;(function($){
     
     const input = document.querySelector("#sbd-search-input");
-
-    if( input == !null  ) {
+    var totalrowcount = document.getElementById('the-list').getElementsByTagName('tr').length;
+    if( totalrowcount > 1 )  {
         input.type = 'date';
     }
+    
 
     $('table').on('click', 'a.submitdelete', function(event){
         event.preventDefault();
