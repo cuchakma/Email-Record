@@ -12,6 +12,9 @@ if ( ! class_exists( 'WP_List_Table' ) ) {
  * Record List Class Handler
  */
 class Record_List extends \WP_List_Table {
+	/**
+	 * Initialize The WP List Table
+	 */
 	public function __construct() {
 		parent::__construct(
 			array(
@@ -22,6 +25,11 @@ class Record_List extends \WP_List_Table {
 		);
 	}
 
+	/**
+	 * Set Columns And Type's
+	 *
+	 * @return array
+	 */
 	public function get_columns() {
 		$columns = array(
 			'cb'         => '<input type="checkbox"/>',
@@ -35,7 +43,11 @@ class Record_List extends \WP_List_Table {
 		return $columns;
 	}
 
-
+	/**
+	 * Sortable Columns
+	 *
+	 * @return array
+	 */
 	public function get_sortable_columns() {
 		$sortable_columns = array(
 			'sent_date'  => array( 'sent_date', true ),
@@ -48,6 +60,13 @@ class Record_List extends \WP_List_Table {
 		return $sortable_columns;
 	}
 
+	/**
+	 * Render Default Columns
+	 *
+	 * @param object $item stdClass object.
+	 * @param string $column_name name of column table's.
+	 * @return string
+	 */
 	protected function column_default( $item, $column_name ) {
 		switch ( $column_name ) {
 			case 'value':
@@ -70,6 +89,12 @@ class Record_List extends \WP_List_Table {
 		);
 	}
 
+	/**
+	 * Send Date Column Modified
+	 *
+	 * @param object $item stdClass object.
+	 * @return string html's row actions
+	 */
 	public function column_sent_date( $item ) {
 		$actions['delete'] = sprintf( '<a href="#" class="submitdelete" data-id="%s">%s</a>', $item->id, 'Delete' );
 		$time              = new DateTime( $item->sent_date );
@@ -78,11 +103,30 @@ class Record_List extends \WP_List_Table {
 
 	}
 
+	/**
+	 * Set Bulk Options
+	 *
+	 * @return array
+	 */
 	public function get_bulk_actions() {
 		$actions['delete'] = 'Delete';
 		return $actions;
 	}
 
+	/**
+	 * When No Email Record Is Found
+	 *
+	 * @return string
+	 */
+	public function no_items() {
+		echo 'There are no email-records found';
+	}
+
+	/**
+	 * Bulk Action's Logic
+	 *
+	 * @return void
+	 */
 	public function process_bulk_options() {
 
 		// security check!
