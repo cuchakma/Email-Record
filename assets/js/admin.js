@@ -1,7 +1,10 @@
 ;(function($){
     
     const input = document.querySelector("#sbd-search-input");
-    input.type = 'date';
+
+    if( input == !null  ) {
+        input.type = 'date';
+    }
 
     $('table').on('click', 'a.submitdelete', function(event){
         event.preventDefault();
