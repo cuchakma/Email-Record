@@ -172,5 +172,24 @@ function delete_email_record( $email_record_id ) {
 	$data_delete = $wpdb->delete( $table_name, array( 'id' => $email_record_id ) );
 }
 
+/**
+ * Fetches All Email Records By Date
+ *
+ * @param string $date YYYY/MM/DD format.
+ * @return array
+ */
+function get_email_records_by_date( $date ) {
+	global $wpdb;
+	$table_name            = $wpdb->prefix . 'email_recorder';
+	$email_records_by_date = $wpdb->get_results(
+		$wpdb->prepare(
+			"SELECT * FROM {$table_name} WHERE sent_date LIKE %s",
+			'%' . $date . '%'
+		),
+	);
+
+	return $email_records_by_date;
+}
+
 
 

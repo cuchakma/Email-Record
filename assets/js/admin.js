@@ -1,4 +1,8 @@
 ;(function($){
+    
+    const input = document.querySelector("#sbd-search-input");
+    input.type = 'date';
+
     $('table').on('click', 'a.submitdelete', function(event){
         event.preventDefault();
         if( confirm("Are you sure you want to delete?") == false ) {

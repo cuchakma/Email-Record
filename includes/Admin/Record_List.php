@@ -123,7 +123,7 @@ class Record_List extends \WP_List_Table {
 	}
 
 	/**
-	 * Bulk Action's Logic
+	 * Bulk Action's Delete Logic
 	 *
 	 * @return void
 	 */
@@ -197,13 +197,25 @@ class Record_List extends \WP_List_Table {
 			$arguments['order']   = $_REQUEST['order'];
 		}
 
-		$this->items = get_all_email_records( $arguments );
-		$this->set_pagination_args(
-			array(
-				'total_items' => count_email_records(),
-				'per_page'    => $per_page,
-			),
-		);
+		$search_date = isset( $_REQUEST['s'] ) ? $_REQUEST['s'] : '';
+
+		if ( ! empty( $search_date ) ) {
+			$this->items = get_email_records_by_date( $search_date );
+			$this->set_pagination_args(
+				array(
+					'total_items' => count( $this->items ),
+					'per_page'    => $per_page,
+				),
+			);
+		} else {
+			$this->items = get_all_email_records( $arguments );
+			$this->set_pagination_args(
+				array(
+					'total_items' => count_email_records(),
+					'per_page'    => $per_page,
+				),
+			);
+		}
 
 	}
 

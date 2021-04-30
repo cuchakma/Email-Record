@@ -15,6 +15,7 @@ if ( isset( $_REQUEST['bulk-delete'] ) ) {
 		<?php
 		  $table = new \Em\Re\Admin\Record_List();
 		  $table->prepare_items();
+		  $table->search_box( 'Search By date', 'sbd' );
 		  $table->display();
 		?>
 	</form>
