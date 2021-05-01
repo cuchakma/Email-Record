@@ -129,45 +129,19 @@ class Record_List extends \WP_List_Table {
 	 */
 	public function process_bulk_options() {
 
-		// security check!
-		if ( isset( $_POST['_wpnonce'] ) && ! empty( $_POST['_wpnonce'] ) ) {
-
-			// security check!
-			if ( isset( $_POST['_wpnonce'] ) && ! empty( $_POST['_wpnonce'] ) ) {
-
-				$nonce  = filter_input( INPUT_POST, '_wpnonce', FILTER_SANITIZE_STRING );
-				$action = 'bulk-' . $this->_args['plural'];
-
-				if ( ! wp_verify_nonce( $nonce, $action ) ) {
-					wp_die( 'Nope! Security check failed!' );
-				}
-			}
-		}
-
 		$action = $this->current_action();
 
-		switch ( $action ) {
-			case 'delete':
-				$ids     = isset( $_POST['email_record_id'] ) ? wp_unslash( $_POST['email_record_id'] ) : '';
-				$deleted = 0;
-				if ( ! empty( $ids ) ) {
-					foreach ( $ids as $id ) {
-						delete_email_record( $id );
-					}
-					$deleted = 1;
-				}
-				if ( $deleted ) {
-					$url = add_query_arg(
-						array(
-							'_wpnonce' => wp_create_nonce( 'bulk-delete-nonce' ),
-						),
-						admin_url( 'admin.php?page=email-records&bulk-delete=true' )
-					);
-					wp_redirect( $url );
-				}
-				break;
-			default:
-				return;
+		if ( $action  === 'delete' ) {
+			$ids     = isset( $_POST['email_record_id'] ) ? wp_unslash( $_POST['email_record_id'] ) : '';
+			$deleted = delete_email_record( $ids );
+			if( $deleted ) {
+				error_log('I am here');
+				?>
+					<div class="notice notice-success is-dismissible">
+						<p><?php echo 'Selected Records Are Deleted' ?></p>
+					</div>
+				<?php
+			}
 		}
 	}
 

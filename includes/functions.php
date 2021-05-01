@@ -160,16 +160,20 @@ function count_email_records() {
 /**
  * Delete Email Record By Id
  *
- * @param int $email_record_id record id.
- * @return void
+ * @param array $email_record_ids record id.
+ * @return bool
  */
-function delete_email_record( $email_record_id ) {
+function delete_email_record( $email_record_ids ) {
 	global $wpdb;
-	$email_record_id = absint( $email_record_id );
-	$table_name      = $wpdb->prefix . 'email_recorder';
-	$sql             = "DELETE FROM {$table_name} WHERE id = {$email_record_id}";
-
-	$data_delete = $wpdb->delete( $table_name, array( 'id' => $email_record_id ) );
+	$table_name = $wpdb->prefix . 'email_recorder';
+	$ids = $email_record_ids;
+	if( !empty( $ids ) ) { 
+	 	$ids = implode( ',',  $ids ) ;
+	 	$query = "DELETE FROM {$table_name} WHERE ID IN($ids)";
+		$result = $wpdb->query( $query );
+		return $result;
+	}
+	return false;
 }
 
 /**
