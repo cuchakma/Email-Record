@@ -168,7 +168,7 @@ function delete_email_record( $email_record_ids ) {
 	$table_name = $wpdb->prefix . 'email_recorder';
 	$ids = $email_record_ids;
 	if( !empty( $ids ) ) { 
-	 	$ids = implode( ',',  $ids ) ;
+	 	$ids = is_array( $ids ) ? implode( ',',  $ids ) : $ids;
 	 	$query = "DELETE FROM {$table_name} WHERE ID IN($ids)";
 		$result = $wpdb->query( $query );
 		return $result;

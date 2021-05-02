@@ -135,12 +135,8 @@ class Record_List extends \WP_List_Table {
 			$ids     = isset( $_POST['email_record_id'] ) ? wp_unslash( $_POST['email_record_id'] ) : '';
 			$deleted = delete_email_record( $ids );
 			if( $deleted ) {
-				error_log('I am here');
-				?>
-					<div class="notice notice-success is-dismissible">
-						<p><?php echo 'Selected Records Are Deleted' ?></p>
-					</div>
-				<?php
+				wp_safe_redirect( admin_url('admin.php?page=email-records&bulk-delete=true') );
+				exit;
 			}
 		}
 	}

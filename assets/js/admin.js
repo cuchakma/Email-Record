@@ -1,25 +1,28 @@
-;(function($){
-    
-    const input = document.getElementById('sbd-search-input');
-    if( !! input ) {
-        input.type = 'date';
-    }
+const input = document.getElementById('sbd-search-input');
+if( !! input ) {
+    input.type = 'date';
+}
 
-    $('table').on('click', 'a.submitdelete', function(event){
-        event.preventDefault();
-        if( confirm("Are you sure you want to delete?") == false ) {
-            return;
-        } 
-        var id = $(this).attr("data-id");
-        wp.ajax.post('email-delete-record', {
-            
-            id: id,
-            _wpnonce:deleteobject.nonce
-            
+const list_anchors = document.getElementById( 'the-list' ).querySelectorAll( 'tr td div span a' );
+for( let anchor of list_anchors ) {
+    anchor.addEventListener( 'click', sendData );
+}
+
+function sendData( ev ) {
+    ev.preventDefault();
+    if( confirm('Are You Sure, You Want To Delete This Record?') == true ) {
+        let id = this.dataset.id ;
+        fetch(deleteobject.ajax_url,{
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8'
+            },
+            body : 'id='+id+'&action=email-delete-record&_wpnonce='+deleteobject.nonce,
+            credentials: 'same-origin'
         })
-        $(this).closest('tr').css('background-color', 'white').hide(400, function(){
-            $(this).remove();
-        });
-       
-    });
-})(jQuery)
+        this.closest('tr').remove('hide');
+    } else{
+        return;
+    }
+        
+}

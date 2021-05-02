@@ -9,6 +9,7 @@ class Ajax {
 
 	public function __construct() {
 		add_action( 'wp_ajax_email-delete-record', array( $this, 'delete_email_record' ) );
+		add_action('wp_ajax_nopriv_email-delete-record',  array( $this, 'delete_email_record' ));
 	}
 
 	public function delete_email_record() {
