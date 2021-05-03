@@ -21,6 +21,7 @@ function sendData( ev ) {
             credentials: 'same-origin'
         })
         this.closest('tr').remove('hide');
+        setInterval('location.reload()', 200);  
     } else{
         return;
     }

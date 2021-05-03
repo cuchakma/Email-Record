@@ -38,6 +38,7 @@ class Record_List extends \WP_List_Table {
 			'to_email'   => '<strong>Email Receiver</strong>',
 			'subject'    => '<strong>Email Subject</strong>',
 			'ip_address' => '<strong>IP</strong>',
+			'resend'     => ''
 		);
 
 		return $columns;
@@ -102,6 +103,26 @@ class Record_List extends \WP_List_Table {
 		return $this->row_actions( $actions );
 
 	}
+	
+	/**
+	 * Resend Column
+	 *
+	 * @param object $item stdClass object
+	 * @return string html
+	 */
+	public function column_resend($item) {
+		return sprintf( '<a href="#" class="button button-secondary" data-id="%s">%s</a>',$item->id, 'Resend');
+	}
+
+	public function column_successful($item) {
+		$success_path = ASSET_PATH . '/img/status.png';
+		$failed_path = ASSET_PATH . '/img/failed.jpg';
+	   
+		return ( $item->successful == 0 || $item->successful == 'null' ) ?  "<img src=$failed_path alt='sent' width='30' height='30' style='position: relative;
+		left: 20px;'>" : "<img src=$success_path alt='sent' width='30' height='30' style='position: relative;
+		left: 20px;'>" ;
+		
+	}
 
 	/**
 	 * Set Bulk Options
@@ -136,7 +157,6 @@ class Record_List extends \WP_List_Table {
 			$deleted = delete_email_record( $ids );
 			if( $deleted ) {
 				wp_safe_redirect( admin_url('admin.php?page=email-records&bulk-delete=true') );
-				exit;
 			}
 		}
 	}
