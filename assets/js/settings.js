@@ -1,7 +1,7 @@
 let clicksubmit = document.getElementById('submit');
-clicksubmit.addEventListener('click', myCapabilities);
+clicksubmit.addEventListener('click', Roles);
 
-function myCapabilities(event) {
+function Roles(event) {
 	event.preventDefault();
 	let options = document.querySelector('fieldset').elements;
 	let selected_roles = [];
@@ -18,5 +18,11 @@ function myCapabilities(event) {
 		},
 		body : 'selected_roles='+selected_roles+'&action=add-capability&_wpnonce='+addcapability.nonce,
 		credentials: 'same-origin'
-	})
+	}).then(data => {
+		if( data.status == 200 ) {
+			alert('Settings Saved Sucessfully');
+		}else {
+			return;
+		}
+	});
 }
