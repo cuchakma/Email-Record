@@ -36,7 +36,7 @@ class Callbacks {
 						$checked = 'checked';
 					}
 					?>
-						<input type="checkbox" name="selected_role[]" value="<?php echo esc_html( $role ); ?>" <?php echo $checked; ?>><?php echo esc_html( $keys['name'] ); ?><br>      
+						<input type="checkbox" value="<?php echo esc_html( $role ); ?>" <?php echo $checked; ?>><?php echo esc_html( $keys['name'] ); ?><br>      
 					<?php
 					$checked = '';
 				}

@@ -27,7 +27,7 @@ class Assets {
 				'version' => filemtime( CURRENT_FOLDER . '/assets/js/admin.js' ),
 				'deps'    => array( 'jquery' ),
 			),
-			'email-settings-sc' => array(
+			'email-settings-set' => array(
 				'src'     => ASSET_PATH . '/js/settings.js',
 				'version' => filemtime( CURRENT_FOLDER . '/assets/js/settings.js' ),
 			),
@@ -74,6 +74,15 @@ class Assets {
 			'deleteobject',
 			array(
 				'nonce'    => wp_create_nonce( 'email-delete-nonce' ),
+				'ajax_url' => admin_url( 'admin-ajax.php' ),
+			)
+		);
+
+		wp_localize_script(
+			'email-settings-set',
+			'addcapability',
+			array(
+				'nonce'    => wp_create_nonce( 'addcapabil' ),
 				'ajax_url' => admin_url( 'admin-ajax.php' ),
 			)
 		);

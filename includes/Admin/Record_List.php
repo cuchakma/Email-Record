@@ -119,6 +119,7 @@ class Record_List extends \WP_List_Table {
 		$failed_path = ASSET_PATH . '/img/failed.jpg';
 	   
 		return ( $item->successful == 0 || $item->successful == 'null' ) ?  
+		
 		"<span data-text='Thanks for hovering! I'm a tooltip'  class='tooltip' ><img src=$failed_path alt='sent' width='30' height='30' style='position: relative;left: 20px;'></span>" : 
 
 		"<img src=$success_path alt='sent' width='30' height='30' style='position: relative; left: 20px;'>
