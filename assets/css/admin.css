@@ -5,3 +5,52 @@ table.widefat {
     border: 1px solid #c3c4c7;
     box-shadow: 0 1px 1px rgb(0 0 0 / 4%);
 }
+
+.tooltip {
+    position:relative; /* making the .tooltip span a container for the tooltip text */
+}
+
+.tooltip:before {
+    content: attr(data-text); /* here's the magic */
+    position:absolute;
+    
+    /* vertically center */
+    top:57%;
+    transform:translateY(-80%);
+    
+    /* move to right */
+    left:58%;
+    margin-left:45px; /* and add a small left margin */
+    
+    /* basic styles */
+    width:200px;
+    padding:10px;
+    border-radius:10px;
+    background:#000;
+    color: #fff;
+    text-align:center;
+  
+    display:none; /* hide by default */
+}
+
+.tooltip:after {
+    content: "";
+    position:absolute;
+    
+    /* position tooltip correctly */
+    left:156%;
+    margin-left:-5px;
+   
+    /* vertically center */
+    top:-21%;
+    transform:translateY(-50%);
+   
+    /* the arrow */
+    border:10px solid #000;
+    border-color: transparent black transparent transparent;
+    
+    display:none;
+  }
+  .tooltip:hover:before, .tooltip:hover:after {
+    display:block;
+  }
