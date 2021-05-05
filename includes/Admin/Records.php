@@ -8,6 +8,13 @@ namespace Em\Re\Admin;
 class Records {
 
 	/**
+	 * Initialize The Class
+	 */
+	public function __construct() {
+		add_action( 'admin_init', array( $this, 'handle_email_datas' ) );
+	}
+
+	/**
 	 * Main Records Template
 	 *
 	 * @return void
@@ -30,6 +37,25 @@ class Records {
 		if ( file_exists( $template ) ) {
 			include $template;
 		}
+	}
+
+	/**
+	 * Process The Email Datas
+	 *
+	 * @return void
+	 */
+	public function handle_email_datas() {
+
+		if( ! isset( $_POST['submit_datas' ]) ) {
+			return;
+		}
+
+		if( !current_user_can('manage_email_record_options') ) {
+			wp_die( 'Are you cheating?' );
+		}
+
+		var_dump( $_POST );
+		die();
 	}
 
 }

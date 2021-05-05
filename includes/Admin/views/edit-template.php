@@ -1,6 +1,6 @@
-	<h3>Edit Email</h3>
-	<form action="" method="post">
-		<table class="form-table" role="email-templates">
+	<h2>Edit Email</h2>
+	<form method="POST">
+		<table class="form-table">
 			<tbody>
 				<tr>
 					<th scope="row">
@@ -36,10 +36,9 @@
 				</tr>
 			</tbody>
 		</table>
+		<?php $settings = array('media_buttons', 'editor_css' ); wp_editor( '', 'email_template_editor', $settings );?>
+		<?php submit_button('Submit', 'primary', 'submit_datas'); ?>
 	</form>
 <?php
-	$settings = array(
-		'media_buttons',
-		'editor_css'
-	);
-	wp_editor( '', 'description', $settings );
+	
+	
