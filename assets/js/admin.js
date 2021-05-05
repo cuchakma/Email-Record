@@ -5,7 +5,9 @@ if( !! input ) {
 
 const list_anchors = document.getElementById( 'the-list' ).querySelectorAll( 'tr td div span a' );
 for( let anchor of list_anchors ) {
-    anchor.addEventListener( 'click', sendData );
+    if( anchor.className === 'submitdelete' ){
+        anchor.addEventListener( 'click', sendData );
+    }
 }
 
 function sendData( ev ) {

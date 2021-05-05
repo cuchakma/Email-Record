@@ -98,6 +98,7 @@ class Record_List extends \WP_List_Table {
 	 */
 	public function column_sent_date( $item ) {
 		$actions['delete'] = sprintf( '<a href="#" class="submitdelete" data-id="%s">%s</a>', $item->id, 'Delete' );
+		$actions['edit']   =  sprintf( '<a href="%s" class="edit" >%s</a>', admin_url('admin.php?page=email-records&action=edit-record&id='.$item->id), 'Edit' );
 		$time              = new DateTime( $item->sent_date );
 		echo esc_attr( $time->format( 'd/m/Y | h:i:s a' ) );
 		return $this->row_actions( $actions );

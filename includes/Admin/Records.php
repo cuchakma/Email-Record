@@ -13,10 +13,21 @@ class Records {
 	 * @return void
 	 */
 	public function email_record_lists() {
-		$template = __DIR__ . '/views/email-list.php';
+		$action = isset( $_REQUEST['action'] ) ? $_REQUEST['action'] : '';
+
+		switch($action) {
+
+			case 'edit-record':
+				$template = __DIR__ . '/views/edit-template.php';
+				break;
+			default:
+				$template = __DIR__ . '/views/email-list.php';
+				wp_enqueue_style( 'email-recorder-st' );
+				wp_enqueue_script( 'email-recorder-sc' );
+				
+		}
+		
 		if ( file_exists( $template ) ) {
-			wp_enqueue_style( 'email-recorder-st' );
-			wp_enqueue_script( 'email-recorder-sc' );
 			include $template;
 		}
 	}
