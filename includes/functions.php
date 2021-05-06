@@ -195,5 +195,23 @@ function get_email_records_by_date( $date ) {
 	return $email_records_by_date;
 }
 
-
+/**
+ * Get Edit Email Contents By Id
+ *
+ * @param int $id
+ * @return void
+ */
+function get_editted_selected_email_contents_by_id( $id ) {
+	global $wpdb;
+	$table_name  = $wpdb->prefix . 'email_recorder';
+	$id = absint($id);
+	$contents = $wpdb->get_results(
+		$wpdb->prepare(
+			"SELECT to_email, subject, ip_address, sent_date, message FROM {$table_name} where id = %s",
+			$id
+		)
+	);
+	
+	return $contents;
+}
 
