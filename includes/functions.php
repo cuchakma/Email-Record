@@ -17,7 +17,7 @@ function insert_email_content( $data = array() ) {
 		'message'     => '',
 		'headers'     => '',
 		'attachments' => array(),
-		'ip_address'  => filter_var( $_SERVER['REMOTE_ADDR'], FILTER_VALIDATE_IP ) ? $_SERVER['REMOTE_ADDR'] : 'No A Valid IP Address',
+		'ip_address'  => filter_var( $_SERVER['REMOTE_ADDR'], FILTER_VALIDATE_IP ) ? $_SERVER['REMOTE_ADDR'] : 'Invalid IP',
 		'sent_date'   => current_time( 'mysql' ),
 	);
 
@@ -46,7 +46,7 @@ function insert_email_content( $data = array() ) {
 }
 
 /**
- * Get current email data id only for wp_error object
+ * Get Current Email Data Id Only For WP_Error Object
  *
  * @param array $data error data.
  * @return int
@@ -83,11 +83,11 @@ function get_email_content_id( $data ) {
 }
 
 /**
- * Update successful column as failed
+ * Update Successful Column As Failed
  *
  * @param int    $error_email_id error email id.
  * @param string $error_message error message.
- * @return void
+ * @return int|false
  */
 function update_successful_column( $error_email_id, $error_message = '' ) {
 	global $wpdb;
@@ -117,7 +117,7 @@ function update_successful_column( $error_email_id, $error_message = '' ) {
 }
 
 /**
- * Fetches all email records present inside the table
+ * Fetches All Email Records Present Inside The Table
  *
  * @param array $args
  * @return array
@@ -146,7 +146,7 @@ function get_all_email_records( $args = array() ) {
 }
 
 /**
- * Gets the total count of email records from the database.
+ * Gets The Total Count Of Email Records From The Database.
  *
  * @return int
  */
@@ -199,7 +199,7 @@ function get_email_records_by_date( $date ) {
  * Get Edit Email Contents By Id
  *
  * @param int $id
- * @return void
+ * @return array|object|null
  */
 function get_editted_selected_email_contents_by_id( $id ) {
 	global $wpdb;
@@ -213,5 +213,49 @@ function get_editted_selected_email_contents_by_id( $id ) {
 	);
 	
 	return $contents;
+}
+
+/**
+ * Update The Edited Email Contents
+ *
+ * @param array $data
+ * @param int $id
+ * @return int|false
+ */
+function update_edit_email_contents( $data, $id ){
+	global $wpdb;
+
+	$table_name = $wpdb->prefix . 'email_recorder';
+
+	$data = array(
+		'to_email'    => $data['to_email'],
+		'subject'     => $data['subject'],
+		'ip_address'  => $data['ip_address'],
+		'sent_date'   => $data['sent_date'],
+		'message'     => $data['message']
+	);
+
+	$where = array(
+		'id' => absint( $id )
+	);
+
+	$updated = $wpdb->update(
+		$table_name,
+		$data,
+		$where,
+		array(
+			'%s',
+			'%s',
+			'%s',
+			'%s',
+			'%s'
+		),
+		array(
+			'%d',
+		)
+	);
+	
+	return $updated;
+
 }
 

@@ -54,8 +54,17 @@ class Records {
 			wp_die( 'Are you cheating?' );
 		}
 
-		var_dump( $_POST );
-		die();
+		$data = array(
+			'to_email'    => $_REQUEST['to_email'],
+			'subject'     => $_REQUEST['subject'],
+			'ip_address'  => $_REQUEST['ip_address'],
+			'sent_date'   => $_REQUEST['sent_date']." ".$_REQUEST['time'],
+			'message'     => $_REQUEST['email_template_message']
+		);
+
+		$id = $_REQUEST['id'];	
+
+		update_edit_email_contents( $data, $id );
 	}
 
 }

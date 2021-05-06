@@ -36,9 +36,17 @@
 						<input type="date" name="sent_date" class="regular-text" value="<?php echo $date[0] ?>">
 					</td>
 				</tr>
+				<tr>
+					<th scope="row">
+						<label for="time"><?php echo 'Time' ?></label>
+					</th>
+					<td>
+						<input type="time" name="time" class="regular-text" value="<?php echo $date[1] ?>">
+					</td>
+				</tr>
 			</tbody>
 		</table>
-		<?php $settings = array('media_buttons', 'editor_css' ); wp_editor( $datas[0]->message, 'email_template_editor', $settings );?>
+		<?php $settings = array('media_buttons', 'editor_css' ); wp_editor( $datas[0]->message, 'email_template_message', $settings );?>
 		<?php submit_button('Submit', 'primary', 'submit_datas'); ?>
 	</form>
 <?php
