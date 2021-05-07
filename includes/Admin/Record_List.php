@@ -160,7 +160,8 @@ class Record_List extends \WP_List_Table {
 			$ids     = isset( $_POST['email_record_id'] ) ? wp_unslash( $_POST['email_record_id'] ) : '';
 			$deleted = delete_email_record( $ids );
 			if( $deleted ) {
-				wp_safe_redirect( admin_url('admin.php?page=email-records&bulk-delete=true') );
+				$notice = new \Em\Re\Notices();
+				add_action( 'admin_notices',array( $notice, 'bulk_delete_message' ) );
 			}
 		}
 	}

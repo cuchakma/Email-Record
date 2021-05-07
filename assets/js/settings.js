@@ -3,8 +3,22 @@ clicksubmit.addEventListener('click', Roles);
 
 function Roles(event) {
 	event.preventDefault();
-	let options = document.querySelector('fieldset').elements;
-	let selected_roles = [];
+	var div  = document.createElement('div');
+	var div2 = document.createElement('div');
+	var div3 = document.createElement('div');
+	var p    = document.createElement('p');
+	div3.className = 'notice notice-success is-dismissible';
+	p.innerText += "Settings Saved";
+	div3.appendChild(p);
+	div.className = 'loading';
+	div2.className = 'loader'
+	div.appendChild(div2);
+	var screen = document.getElementById('wpwrap');
+	screen.appendChild(div);
+	var hide = document.querySelector('div');
+	var child = hide.lastChild
+	var options = document.querySelector('fieldset').elements;
+	var selected_roles = [];
 	for( let i = 0; i < options.length; i++ ) {
 		if( options[i].checked  == true && options[i].value!== 'administrator') {
 			selected_roles[i] =  options[i].value;
@@ -20,7 +34,9 @@ function Roles(event) {
 		credentials: 'same-origin'
 	}).then(data => {
 		if( data.status == 200 ) {
-			alert('Settings Saved Sucessfully');
+			setInterval( () => {child.remove()}, 2000 );
+			var insert = document.getElementById('tab-1').querySelector('form');
+			insert.insertAdjacentElement('afterbegin', div3);
 		}else {
 			return;
 		}

@@ -64,7 +64,12 @@ class Records {
 
 		$id = $_REQUEST['id'];	
 
-		update_edit_email_contents( $data, $id );
+		$updated = update_edit_email_contents( $data, $id );
+	
+		if( $updated ) {
+			$notice = new \Em\Re\Notices();
+			add_action( 'admin_notices',array( $notice, 'update_email_content_message' ) );
+		}
 	}
 
 }

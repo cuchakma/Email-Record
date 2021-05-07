@@ -36,6 +36,7 @@ class ComposerStaticInit88310e4f6455e03deb74a45476dd1759
         'Em\\Re\\Ajax' => __DIR__ . '/../..' . '/includes/Ajax.php',
         'Em\\Re\\Assets' => __DIR__ . '/../..' . '/includes/Assets.php',
         'Em\\Re\\Installer' => __DIR__ . '/../..' . '/includes/Installer.php',
+        'Em\\Re\\Notices' => __DIR__ . '/../..' . '/includes/Notices.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

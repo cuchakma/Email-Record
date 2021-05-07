@@ -17,4 +17,5 @@ return array(
     'Em\\Re\\Ajax' => $baseDir . '/includes/Ajax.php',
     'Em\\Re\\Assets' => $baseDir . '/includes/Assets.php',
     'Em\\Re\\Installer' => $baseDir . '/includes/Installer.php',
+    'Em\\Re\\Notices' => $baseDir . '/includes/Notices.php',
 );

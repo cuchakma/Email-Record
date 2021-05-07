@@ -12,7 +12,7 @@ for( let anchor of list_anchors ) {
 
 function sendData( ev ) {
     ev.preventDefault();
-    if( confirm('Are You Sure, You Want To Delete This Record?') == true ) {
+    if( confirm( 'Are You Sure, You Want To Delete This Record?' ) == true ) {
         let id = this.dataset.id ;
         fetch(deleteobject.ajax_url,{
             method: 'POST',
