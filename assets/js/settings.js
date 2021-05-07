@@ -34,10 +34,11 @@ function Roles(event) {
 		credentials: 'same-origin'
 	}).then(data => {
 		if( data.status == 200 ) {
-			setInterval( () => {child.remove()}, 2000 );
+			setTimeout( () => {child.remove()}, 2000 );
 			var insert = document.getElementById('tab-1').querySelector('form');
 			insert.insertAdjacentElement('afterbegin', div3);
-			setInterval(() => {fadeout(div3)}, 3000);
+			setTimeout(() => {fadeout(div3)}, 3000);
+			setTimeout(() => {div3.remove()}, 5000);
 		}else {
 			return;
 		}
