@@ -37,8 +37,29 @@ function Roles(event) {
 			setInterval( () => {child.remove()}, 2000 );
 			var insert = document.getElementById('tab-1').querySelector('form');
 			insert.insertAdjacentElement('afterbegin', div3);
+			setInterval(() => {fadeout(div3)}, 3000);
 		}else {
 			return;
 		}
 	});
+}
+
+function fadeout(element) {
+
+    var intervalID = setInterval(function () {
+          
+        if (!element.style.opacity) {
+            element.style.opacity = 1;
+        }
+          
+          
+        if (element.style.opacity > 0) {
+            element.style.opacity -= 0.1;
+        } 
+          
+        else {
+            clearInterval(intervalID);
+        }
+          
+    }, 200);
 }
