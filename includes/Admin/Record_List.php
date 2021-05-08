@@ -98,7 +98,7 @@ class Record_List extends \WP_List_Table {
 	 */
 	public function column_sent_date( $item ) {
 		$actions['delete'] = sprintf( '<a href="#" class="submitdelete" data-id="%s">%s</a>', $item->id, 'Delete' );
-		$actions['edit']   =  sprintf( '<a href="%s" class="edit" >%s</a>', admin_url('admin.php?page=email-records&action=edit-record&id='.$item->id), 'Edit' );
+		$actions['edit']   =  sprintf( '<a href="%s" class="edit" >%s</a>', admin_url('admin.php?page=email-records&action=edit-record&id='.$item->id), 'Edit With TinyMce' );
 		$time              = new DateTime( $item->sent_date );
 		echo esc_attr( $time->format( 'd/m/Y | h:i:s a' ) );
 		return $this->row_actions( $actions );
@@ -118,13 +118,11 @@ class Record_List extends \WP_List_Table {
 	public function column_successful($item) {
 		$success_path = ASSET_PATH . '/img/status.png';
 		$failed_path = ASSET_PATH . '/img/failed.jpg';
-	   
-		return ( $item->successful == 0 || $item->successful == 'null' ) ?  
-		
-		"<span data-text='Thanks for hovering! I'm a tooltip'  class='tooltip' ><img src=$failed_path alt='sent' width='30' height='30' style='position: relative;left: 20px;'></span>" : 
-
-		"<img src=$success_path alt='sent' width='30' height='30' style='position: relative; left: 20px;'>
-		<span data-text='Thanks for hovering! I'm a tooltip'  class='tooltip' >Hover over me!</span>";
+	
+		return ( absint( $item->successful ) == 0 || absint( $item->successful ) == null ) ?  
+	
+		"<span data-text='$item->error_message'  class='tooltip' ><img src=$failed_path alt='sent' width='30' height='30' style='position: relative;left: 20px;'></span>" : 
+		"<span data-text='$item->error_message'  class='tooltip' ><img src=$success_path alt='sent' width='30' height='30' style='position: relative; left: 20px;'></span>";
 		
 	}
 
@@ -153,7 +151,6 @@ class Record_List extends \WP_List_Table {
 	 * @return void
 	 */
 	public function process_bulk_options() {
-
 		$action = $this->current_action();
 
 		if ( $action  === 'delete' ) {
