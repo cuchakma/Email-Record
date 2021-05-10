@@ -118,11 +118,12 @@ class Record_List extends \WP_List_Table {
 	public function column_successful($item) {
 		$success_path = ASSET_PATH . '/img/status.png';
 		$failed_path = ASSET_PATH . '/img/failed.jpg';
-	
+		$message = empty( $item->error_message ) ? 'Sent Successfully' :  $item->error_message;
+
 		return ( absint( $item->successful ) == 0 || absint( $item->successful ) == null ) ?  
 	
 		"<span data-text='$item->error_message'  class='tooltip' ><img src=$failed_path alt='sent' width='30' height='30' style='position: relative;left: 20px;'></span>" : 
-		"<span data-text='$item->error_message'  class='tooltip' ><img src=$success_path alt='sent' width='30' height='30' style='position: relative; left: 20px;'></span>";
+		"<span data-text='$message'  class='tooltip' ><img src=$success_path alt='sent' width='30' height='30' style='position: relative; left: 20px;'></span>";
 		
 	}
 
