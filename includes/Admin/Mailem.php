@@ -33,7 +33,7 @@ class Mailem {
 			'attachments' => is_array( $genuine_email['attachments'] ) ? implode( '\n', $genuine_email['attachments'] ) : $genuine_email['attachments'],
 			'sent_date'   => current_time( 'mysql' ),
 		);
-
+		
 		insert_email_content( $sanitized_email_args );
 
 	}
