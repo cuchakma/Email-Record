@@ -118,7 +118,7 @@ class Record_List extends \WP_List_Table {
 	public function column_successful($item) {
 		$success_path = ASSET_PATH . '/img/status.png';
 		$failed_path = ASSET_PATH . '/img/failed.jpg';
-		$message = empty( $item->error_message ) ? 'Sent Successfully' :  $item->error_message;
+		$message = empty( $item->error_message ) ? 'Sent Successfully!' :  $item->error_message;
 
 		return ( absint( $item->successful ) == 0 || absint( $item->successful ) == null ) ?  
 	
