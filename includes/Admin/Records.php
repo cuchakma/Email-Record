@@ -59,7 +59,7 @@ class Records {
 			'subject'     => $_REQUEST['subject'],
 			'ip_address'  => $_REQUEST['ip_address'],
 			'sent_date'   => $_REQUEST['sent_date']." ".$_REQUEST['time'],
-			'message'     => $_REQUEST['email_template_message']
+			'message'     => wp_kses_post( $_REQUEST['email_template_message'] )
 		);
 
 		$id = $_REQUEST['id'];	
