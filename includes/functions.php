@@ -203,16 +203,25 @@ function get_email_records_by_date( $date ) {
  * @param int $id
  * @return array|object|null
  */
-function get_editted_selected_email_contents_by_id( $id ) {
+function get_editted_selected_email_contents_by_id( $id, $mode = 'edit' ) {
 	global $wpdb;
 	$table_name  = $wpdb->prefix . 'email_recorder';
 	$id = absint($id);
-	$contents = $wpdb->get_results(
-		$wpdb->prepare(
-			"SELECT to_email, subject, ip_address, sent_date, message FROM {$table_name} where id = %s",
-			$id
-		)
-	);
+	if( $mode === 'edit' ) {
+		$contents = $wpdb->get_results(
+			$wpdb->prepare(
+				"SELECT to_email, subject, ip_address, sent_date, message FROM {$table_name} where id = %s",
+				$id
+			)
+		);
+	} elseif( $mode === 'resend' ) {
+		$contents = $wpdb->get_results(
+			$wpdb->prepare(
+				"SELECT * FROM {$table_name} where id = %s",
+				$id
+			)
+		);
+	}
 	
 	return $contents;
 }

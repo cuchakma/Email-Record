@@ -38,7 +38,7 @@ class Record_List extends \WP_List_Table {
 			'to_email'   => '<strong>Email Receiver</strong>',
 			'subject'    => '<strong>Email Subject</strong>',
 			'ip_address' => '<strong>IP</strong>',
-			'resend'     => ''
+			'resend'     => '',
 		);
 
 		return $columns;
@@ -98,33 +98,33 @@ class Record_List extends \WP_List_Table {
 	 */
 	public function column_sent_date( $item ) {
 		$actions['delete'] = sprintf( '<a href="#" class="submitdelete" data-id="%s">%s</a>', $item->id, 'Delete' );
-		$actions['edit']   =  sprintf( '<a href="%s" class="edit" >%s</a>', admin_url('admin.php?page=email-records&action=edit-record&id='.$item->id), 'Edit With TinyMce' );
+		$actions['edit']   = sprintf( '<a href="%s" class="edit" >%s</a>', admin_url( 'admin.php?page=email-records&action=edit-record&id=' . $item->id ), 'Edit With TinyMce' );
 		$time              = new DateTime( $item->sent_date );
 		echo esc_attr( $time->format( 'd/m/Y | h:i:s a' ) );
 		return $this->row_actions( $actions );
 
 	}
-	
+
 	/**
 	 * Resend Column
 	 *
 	 * @param object $item stdClass object
 	 * @return string html
 	 */
-	public function column_resend($item) {
-		return sprintf( '<a href="#" class="button button-secondary" data-id="%s">%s</a>',$item->id, 'Resend');
+	public function column_resend( $item ) {
+		return sprintf( '<a href="%s" class="button button-secondary" data-id="%s">%s</a>', admin_url('admin.php?page=email-records&id='.$item->id),$item->id, 'Resend' );
 	}
 
-	public function column_successful($item) {
+	public function column_successful( $item ) {
 		$success_path = ASSET_PATH . '/img/status.png';
-		$failed_path = ASSET_PATH . '/img/failed.jpg';
-		$message = empty( $item->error_message ) ? 'Sent Successfully!' :  $item->error_message;
+		$failed_path  = ASSET_PATH . '/img/failed.jpg';
+		$message      = empty( $item->error_message ) ? 'Sent Successfully!' : $item->error_message;
 
-		return ( absint( $item->successful ) == 0 || absint( $item->successful ) == null ) ?  
-	
-		"<span data-text='$item->error_message'  class='tooltip' ><img src=$failed_path alt='sent' width='30' height='30' style='position: relative;left: 20px;'></span>" : 
+		return ( absint( $item->successful ) == 0 || absint( $item->successful ) == null ) ?
+
+		"<span data-text='$item->error_message'  class='tooltip' ><img src=$failed_path alt='sent' width='30' height='30' style='position: relative;left: 20px;'></span>" :
 		"<span data-text='$message'  class='tooltip' ><img src=$success_path alt='sent' width='30' height='30' style='position: relative; left: 20px;'></span>";
-		
+
 	}
 
 	/**
@@ -154,14 +154,30 @@ class Record_List extends \WP_List_Table {
 	public function process_bulk_options() {
 		$action = $this->current_action();
 
-		if ( $action  === 'delete' ) {
+		if ( $action === 'delete' ) {
 			$ids     = isset( $_POST['email_record_id'] ) ? wp_unslash( $_POST['email_record_id'] ) : '';
 			$deleted = delete_email_record( $ids );
-			if( $deleted ) {
+			if ( $deleted ) {
 				$notice = new \Em\Re\Notices();
-				add_action( 'admin_notices',array( $notice, 'bulk_delete_message' ) );
+				add_action( 'admin_notices', array( $notice, 'bulk_delete_message' ) );
 			}
 		}
+	}
+
+	/**
+	 * Process Resend Email
+	 *
+	 * @return bool
+	 */
+	public function reSendMail( $id ) {
+		$mail_contents_by_id = get_editted_selected_email_contents_by_id( $id, 'resend' );
+		$to 				 = isset( $mail_contents_by_id['to_email'] ) ? $mail_contents_by_id['to_email'] : '';
+		$subject 			 = isset( $mail_contents_by_id['subject'] ) ? $mail_contents_by_id['subject']: '';
+		$message 			 = isset( $mail_contents_by_id['subject'] ) ? $mail_contents_by_id['subject']: '';
+		$headers 			 = isset( $mail_contents_by_id['headers'] ) ? $mail_contents_by_id['headers'] : '';
+		$attachments 		 = isset( $mail_contents_by_id['headers'] ) ? $mail_contents_by_id['headers'] : '';
+		$result              = wp_mail( $to, $subject, $message, $headers, $attachments );
+		return $result;
 	}
 
 	/**
@@ -176,6 +192,11 @@ class Record_List extends \WP_List_Table {
 		$this->_column_headers = array( $columns, $hidden, $sortable );
 
 		$this->process_bulk_options();
+
+		$resend_mail_id = isset( $_REQUEST['id'] ) ? $_REQUEST['id'] : '';
+		if( $resend_mail_id ) {
+			$this->reSendMail( $resend_mail_id );
+		}
 
 		$per_page     = 20;
 		$current_page = $this->get_pagenum();
