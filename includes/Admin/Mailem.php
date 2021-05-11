@@ -22,7 +22,7 @@ class Mailem {
 	 * @return void
 	 */
 	public function grab_email( $genuine_email ) {
-
+		error_log(print_r($genuine_email, true));
 		$genuine_email = apply_filters( 'email_record_content', $genuine_email );
 
 		$sanitized_email_args = array(
