@@ -171,13 +171,13 @@ class Record_List extends \WP_List_Table {
 	 */
 	public function reSendMail( $id ) {
 		$mail_contents_by_id = get_editted_selected_email_contents_by_id( $id, 'resend' );
-		$to 				 = isset( $mail_contents_by_id['to_email'] ) ? $mail_contents_by_id['to_email'] : '';
-		$subject 			 = isset( $mail_contents_by_id['subject'] ) ? $mail_contents_by_id['subject']: '';
-		$message 			 = isset( $mail_contents_by_id['message'] ) ? $mail_contents_by_id['message']: '';
-		$headers 			 = isset( $mail_contents_by_id['headers'] ) ? $mail_contents_by_id['headers'] : '';
-		$attachments 		 = isset( $mail_contents_by_id['headers'] ) ? $mail_contents_by_id['headers'] : '';
-		$result              = wp_mail( $to, $subject, $message, $headers, $attachments );
-		return $result;
+		$mail_contents_by_id = $mail_contents_by_id[0];
+		$to     			 = isset( $mail_contents_by_id->to_email ) ? $mail_contents_by_id->to_email: '';
+		$subject 			 = isset( $mail_contents_by_id->subject ) ? $mail_contents_by_id->subject: '';
+		$message 			 = isset( $mail_contents_by_id->message ) ? $mail_contents_by_id->message: '';
+		$headers 			 = isset( $mail_contents_by_id->headers ) ? $mail_contents_by_id->headers: '';
+		$attachments 		 = isset( $mail_contents_by_id->attachments) ? $mail_contents_by_id->attachments : '';
+		wp_mail( $to, $subject, $message, $headers, $attachments );
 	}
 
 	/**

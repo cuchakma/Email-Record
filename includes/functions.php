@@ -74,9 +74,9 @@ function get_email_content_id( $data ) {
 
 	if ( isset( $data['attachments'] ) ) {
 		if ( is_array( $data['attachments'] ) ) {
-			$attachments = count( $data['attachments'] ) > 0 ? 'true' : 'false';
+			$attachments = count( $data['attachments'] ) > 0 && array_sum( $data['attachments'] ) != 0 ? 'true' : 'false';
 		} else {
-			$attachments = empty( $data['attachments'] ) ? 'false' : 'true';
+			$attachments = empty( $data['attachments'] ) ? 'true' : 'false';
 		}
 		$columns['attachments'] = trim( esc_sql( $attachments ) );
 	}

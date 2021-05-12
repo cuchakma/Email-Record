@@ -22,7 +22,7 @@ class Mailem {
 	 * @return void
 	 */
 	public function grab_email( $genuine_email ) {
-		error_log(print_r($genuine_email, true));
+
 		$genuine_email = apply_filters( 'email_record_content', $genuine_email );
 
 		$sanitized_email_args = array(
@@ -45,6 +45,7 @@ class Mailem {
 	 * @return void
 	 */
 	public function grab_error( $wp_error ) {
+
 		if ( ! is_wp_error( $wp_error ) ) {
 			return;
 		}
@@ -53,7 +54,6 @@ class Mailem {
 		$error_noitce = $wp_error->get_error_message( 'wp_mail_failed' );
 
 		$this->update_email_record_unsuccessful( $error_value, $error_noitce );
-
 	}
 
 	/**
@@ -73,7 +73,7 @@ class Mailem {
 		}
 
 		$error_data_id = get_email_content_id( $error_data );
-
+	
 		if ( empty( $error_data_id ) ) {
 			return;
 		} else {
