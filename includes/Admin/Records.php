@@ -12,6 +12,7 @@ class Records {
 	 */
 	public function __construct() {
 		add_action( 'admin_init', array( $this, 'handle_email_datas' ) );
+		add_action( 'admin_notices', array( $this, 'handle_email_datas' ) );
 	}
 
 	/**
@@ -65,10 +66,10 @@ class Records {
 		$id = $_REQUEST['id'];	
 
 		$updated = update_edit_email_contents( $data, $id );
-	
+		
 		if( $updated ) {
 			$notice = new \Em\Re\Notices();
-			add_action( 'admin_notices',array( $notice, 'update_email_content_message' ) );
+			echo $notice->update_email_content_message();
 		}
 	}
 

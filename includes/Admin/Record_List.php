@@ -16,6 +16,7 @@ class Record_List extends \WP_List_Table {
 	 * Initialize The WP List Table
 	 */
 	public function __construct() {
+		add_action('admin_notices', array( $this, 'process_bulk_options' ) );
 		parent::__construct(
 			array(
 				'singular' => 'email-record',
@@ -159,7 +160,7 @@ class Record_List extends \WP_List_Table {
 			$deleted = delete_email_record( $ids );
 			if ( $deleted ) {
 				$notice = new \Em\Re\Notices();
-				add_action( 'admin_notices', array( $notice, 'bulk_delete_message' ) );
+			    echo $notice->bulk_delete_message();
 			}
 		}
 	}
@@ -167,7 +168,7 @@ class Record_List extends \WP_List_Table {
 	/**
 	 * Process Resend Email
 	 *
-	 * @return bool
+	 * @return null
 	 */
 	public function reSendMail( $id ) {
 		$mail_contents_by_id = get_editted_selected_email_contents_by_id( $id, 'resend' );

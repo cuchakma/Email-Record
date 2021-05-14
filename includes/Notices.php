@@ -13,11 +13,11 @@ class Notices{
      * @return void
      */
     public function update_email_content_message() {
-		?>
-			<div class="notice notice-success is-dismissible">
-				<p><?php echo 'Updated Successfully'; ?></p>
-			</div>
-        <?php
+		return '
+            <div class="notice notice-success is-dismissible">
+                <p>Updated Successfully</p>
+            </div>
+        ';
     }
 
     /**
@@ -26,10 +26,10 @@ class Notices{
      * @return void
      */
     public function bulk_delete_message() {
-        ?>
+        return '
             <div class="notice notice-success is-dismissible">
-				<p><?php echo 'Deleted Successfully'; ?></p>
+				<p>Deleted Successfully</p>
 			</div>
-        <?php
+        ';
     }
 }
